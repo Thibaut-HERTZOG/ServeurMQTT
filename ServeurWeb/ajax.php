@@ -50,27 +50,27 @@ $reponse="";
 
 
     function on1() {
-	shell_exec('mosquitto_pub -t "prise/prise1" -m "A"');
-	$reponse = shell_exec('timeout 2s mosquitto_sub -t "prise/prise1" -C 1');
+	shell_exec('mosquitto_pub -t "YourTopic" -m "A"');
+	$reponse = shell_exec('timeout 2s mosquitto_sub -t "YourTopic" -C 1');
 	exit;
     }
 
     function off1() {
-        shell_exec('mosquitto_pub -t "prise/prise1" -m "E"');
-        $reponse = shell_exec('timeout 2s mosquitto_sub -t "prise/prise1" -C 1');
+        shell_exec('mosquitto_pub -t "YourTopic" -m "E"');
+        $reponse = shell_exec('timeout 2s mosquitto_sub -t "YourTopic" -C 1');
 	exit;
     }
 
     function on2() {
-        shell_exec('mosquitto_pub -t "prise/prise2" -m "A"');
-        $reponse = shell_exec('timeout 2s mosquitto_sub -t "prise/prise2" -C 1');
+        shell_exec('mosquitto_pub -t "YourTopic" -m "A"');
+        $reponse = shell_exec('timeout 2s mosquitto_sub -t "YourTopic" -C 1');
         exit;
     }
 
 
     function off2() {
-        shell_exec('mosquitto_pub -t "prise/prise2" -m "E"');
-        $reponse = shell_exec('timeout 2s mosquitto_sub -t "prise/prise2" -C 1');
+        shell_exec('mosquitto_pub -t "YourTopic" -m "E"');
+        $reponse = shell_exec('timeout 2s mosquitto_sub -t "YourTopic" -C 1');
         exit;
     }
 
@@ -82,7 +82,7 @@ $reponse="";
 
     function off() {
         off1();
-	      off2();
+	off2();
     exit;
     }
 
