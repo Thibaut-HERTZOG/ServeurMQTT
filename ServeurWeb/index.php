@@ -20,7 +20,6 @@ $(document).ready(function(){
     $('.button1').click(function(){
         data =  {'action1': $(this).val()};
         $.post('ajax.php', data, function (response) {
-//	$( ".result1" ).html(response);
         });
     });
 });
@@ -39,7 +38,6 @@ $(document).ready(function(){
     $('.button2').click(function(){
         data =  {'action2': $(this).val()};
         $.post('ajax.php', data, function (response) {
-//        $( ".result2" ).html(response);
         });
     });
 });
@@ -58,11 +56,9 @@ $(document).ready(function(){
     $('.button3').click(function(){
         data1 =  {'action1' : $(this).val()};
 	$.post('ajax.php', data1, function (response1) {
-//        $( ".result1" ).html(response1);
         });
 	data2 = {'action2' : $(this).val()};
 	$.post('ajax.php', data2, function (response2) {
-//        $( ".result2" ).html(response2);
         });
     });
 });
@@ -74,9 +70,8 @@ $(document).ready(function(){
 
 $(document).ready(function() {
 	setInterval(myFunction, 250);
-function myFunction(){
+	function myFunction(){
 		$.post('refresh1.php', function(response){
-		console.log(response);
 		if(response == "ok") {
 			valeur1 = "Prise : On";
 			$(".result1").html(valeur1);
@@ -86,9 +81,20 @@ function myFunction(){
 	                $(".result1").html(valeur2);
 		};
 	});
+$.post('refresh2.php', function(response){
+		if(response == "ok") {
+			valeur1 = "Prise : On";
+			$(".result2").html(valeur1);
+		}
+		else if(response == "not") {
+              	valeur2 = "Prise : Off";
+	                $(".result2").html(valeur2);
+		};
+	});
 	}
 
 });
+	
 </script>
 
 </body>
