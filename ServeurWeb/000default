@@ -1,0 +1,37 @@
+<VirtualHost *:80>
+	Redirect permanent / https:YourWebsite:443/
+</VirtualHost>
+
+
+<VirtualHost *:443>
+
+	ServerAdmin webmaster@localhost
+	DocumentRoot /var/www/php
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        <Directory "/var/www/php">
+		        AuthType Basic
+		        AuthName "Restricted Content"
+	        	AuthUserFile /etc/apache2/.htpasswd
+	        	Require valid-user
+        </Directory>
+
+	# SSL Generating with certbot 
+  
+  SSLEngine on
+	SSLCertificateFile    /etc/letsencrypt/live/YourDomain/fullchain.pem
+	SSLCertificateKeyFile   /etc/letsencrypt/live/YourDomain/privkey.pem
+ 
+	Header always set Strict-Transport-Security "max-age=15768000"
+ 
+	ErrorLog /var/log/apache2/error.YourDomain.log
+	CustomLog /var/log/apache2/access.YourDomain.log combined
+
+RewriteEngine on
+RewriteCond %{SERVER_NAME} = YourDomain
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+</VirtualHost>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
