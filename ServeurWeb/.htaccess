@@ -1,0 +1,4 @@
+AuthName "Authentification obligatoire"
+AuthType Basic
+AuthUserFile /etc/apache2/.htpasswd
+Require valid-user
